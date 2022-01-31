@@ -1,0 +1,9 @@
+<p>logview works!</p>
+
+<li *ngFor="let goodlog of dashboard.goodlogs">
+  <p>{{goodlog.name}}</p>
+  </li>
+
+  <li *ngFor="let anomaly of dashboard.anomalyreference">
+    <a role="button" (click)="viewAnomaly(anomaly.id)">name = {{anomaly.name}} hash = {{anomaly.hash}}</a>
+    </li>

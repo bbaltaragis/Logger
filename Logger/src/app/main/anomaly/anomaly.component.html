@@ -1,0 +1,55 @@
+<style>
+    textarea {
+        width: 200px;
+        height: 100px;
+        position: relative;
+        overflow: hidden;
+    }
+</style>
+<p>anomaly works!</p>
+
+{{anomaly.anomalyReference[0].name}} | {{anomaly.anomalyReference[0].hash}}
+<br />
+<hr />
+<label>Resolution Steps</label>
+<br />
+<textarea #resolutionSteps>{{anomaly.anomalyReference[0].resolution_steps}}</textarea>
+<br />
+<button (click)="patchResolutionSteps(resolutionSteps.value)">Update Resolution Steps</button>
+<br />
+<!--Createa-->
+<label>Root Cause</label>
+<br />
+<textarea #rootCause>{{anomaly.anomalyReference[0].root_cause}}</textarea>
+<br />
+<!--create a button to update root cause that passes in the value of #rootCause-->
+<button (click)="patchRootCause(rootCause.value)">Update Root Cause</button>
+<table>
+    <thead>
+        <th>Comment</th>
+        <th>Username</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let anomaly of anomaly.anomalyComments">
+            <td>{{anomaly.comment}}</td>
+            <td>{{anomaly.username}}</td>
+        </tr>
+</table>
+
+<br />
+<input type="text" #comment/>
+<br />
+<button (click)="postComment(comment.value)">Add Comment</button>
+<br />
+<table>
+    <thead>
+        <th>Last Occured</th>
+        <th>Plaintext</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let anomaly of anomaly.historicalAnomalies">
+            <td>{{anomaly.date_occured}}</td>
+            <td>{{anomaly.plaintext}}</td>
+        </tr>
+</table>
+<button (click)="getDashboard()">Back</button>
